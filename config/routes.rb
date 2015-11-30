@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root "pages#index"
+
   # Routes for the Blog resource:
   # CREATE
   get "/blogs/new", :controller => "blogs", :action => "new"

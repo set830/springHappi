@@ -1,4 +1,7 @@
 class CalendarsController < ApplicationController
+  before_action :authenticate_user!
+  skip_before_action :authenticate_user, only:[:index, :show, :edit, :update]
+
   def index
     @calendars = Calendar.all
   end
