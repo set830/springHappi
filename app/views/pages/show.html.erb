@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Page #<%= @page.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>For</dt>
+      <dd><%= @page.for %></dd>
+
+      <dt>Comment</dt>
+      <dd><%= @page.comment_id %></dd>
+
+      <dt>Blog</dt>
+      <dd><%= @page.blog_id %></dd>
+
+      <dt>Calendar</dt>
+      <dd><%= @page.calendar_id %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @page.description %></dd>
+
+      <dt>Photo</dt>
+      <dd><%= @page.photo %></dd>
+
+      <dt>Title</dt>
+      <dd><%= @page.title %></dd>
+
+      <dt>User</dt>
+      <dd><%= @page.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/pages" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_page/<%= @page.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

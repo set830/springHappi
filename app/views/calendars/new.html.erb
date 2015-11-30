@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @calendar.errors.any? %>
+  <% @calendar.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Calendar</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_calendar" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for comment -->
+      <div class="form-group">
+        <label for="comment" class="control-label">
+          Comment
+        </label>
+
+        <input type="text" id="comment" name="comment" placeholder="Comment" class="form-control" value="<%= @calendar.comment %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @calendar.name %>">
+      </div>
+
+      <!-- Label and input for chosendate -->
+      <div class="form-group">
+        <label for="chosendate" class="control-label">
+          Chosendate
+        </label>
+
+        <input type="text" id="chosendate" name="chosendate" placeholder="Chosendate" class="form-control" value="<%= @calendar.chosendate %>">
+      </div>
+
+      <!-- Label and input for page_id -->
+      <div class="form-group">
+        <label for="page_id" class="control-label">
+          Page
+        </label>
+
+        <input type="text" id="page_id" name="page_id" placeholder="Page" class="form-control" value="<%= @calendar.page_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Calendar
+      </button>
+      or
+      <a href="/calendars">Cancel</a>
+    </form>
+  </div>
+</div>

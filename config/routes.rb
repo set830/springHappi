@@ -1,4 +1,73 @@
 Rails.application.routes.draw do
+  # Routes for the Blog resource:
+  # CREATE
+  get "/blogs/new", :controller => "blogs", :action => "new"
+  post "/create_blog", :controller => "blogs", :action => "create"
+
+  # READ
+  get "/blogs", :controller => "blogs", :action => "index"
+  get "/blogs/:id", :controller => "blogs", :action => "show"
+
+  # UPDATE
+  get "/blogs/:id/edit", :controller => "blogs", :action => "edit"
+  post "/update_blog/:id", :controller => "blogs", :action => "update"
+
+  # DELETE
+  get "/delete_blog/:id", :controller => "blogs", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Calendar resource:
+  # CREATE
+  get "/calendars/new", :controller => "calendars", :action => "new"
+  post "/create_calendar", :controller => "calendars", :action => "create"
+
+  # READ
+  get "/calendars", :controller => "calendars", :action => "index"
+  get "/calendars/:id", :controller => "calendars", :action => "show"
+
+  # UPDATE
+  get "/calendars/:id/edit", :controller => "calendars", :action => "edit"
+  post "/update_calendar/:id", :controller => "calendars", :action => "update"
+
+  # DELETE
+  get "/delete_calendar/:id", :controller => "calendars", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Comment resource:
+  # CREATE
+  get "/comments/new", :controller => "comments", :action => "new"
+  post "/create_comment", :controller => "comments", :action => "create"
+
+  # READ
+  get "/comments", :controller => "comments", :action => "index"
+  get "/comments/:id", :controller => "comments", :action => "show"
+
+  # UPDATE
+  get "/comments/:id/edit", :controller => "comments", :action => "edit"
+  post "/update_comment/:id", :controller => "comments", :action => "update"
+
+  # DELETE
+  get "/delete_comment/:id", :controller => "comments", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Page resource:
+  # CREATE
+  get "/pages/new", :controller => "pages", :action => "new"
+  post "/create_page", :controller => "pages", :action => "create"
+
+  # READ
+  get "/pages", :controller => "pages", :action => "index"
+  get "/pages/:id", :controller => "pages", :action => "show"
+
+  # UPDATE
+  get "/pages/:id/edit", :controller => "pages", :action => "edit"
+  post "/update_page/:id", :controller => "pages", :action => "update"
+
+  # DELETE
+  get "/delete_page/:id", :controller => "pages", :action => "destroy"
+  #------------------------------
+
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
