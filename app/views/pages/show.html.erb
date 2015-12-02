@@ -1,37 +1,75 @@
-<div class="page-header">
-  <h3>Page #<%= @page.id %></h3>
-</div>
+<div class="container">
 
-<div class="row">
-  <div class="col-md-12">
-    <dl class="dl-horizontal">
-      <dt>For</dt>
-      <dd><%= @page.for %></dd>
+    <div class="row">
+        <div class="col-md-5">
+        <div class="justified">
+          <br />
+          <img src="<%= @page.photo %>" width="200"><br /><br />
+          <%= @page.description %>
+        </div>
+        </div>
 
-      <dt>Description</dt>
-      <dd><%= @page.description %></dd>
+        <div class="col-md-6">
 
-      <dt>Photo</dt>
-      <dd><%= @page.photo %></dd>
 
-      <dt>Title</dt>
-      <dd><%= @page.title %></dd>
-
-      <dt>User</dt>
-      <dd><%= @page.user_id %></dd>
-
-    </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/pages" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_page/<%= @page.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+        </div>
     </div>
-  </div>
+
+    <div class="row">
+        <div class="col-md-5">
+        <form action="/create_comment" method="post">
+                  <!-- Hidden input for authenticity token to protect from forgery -->
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                <!-- Label and input for page_id -->
+                <div class="form-group">
+                  <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
+                </div>
+
+                <!-- Label and input for user_id -->
+                <div class="form-group">
+
+                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @comment.name %>">
+                </div>
+
+                <!-- Label and input for body -->
+                <div class="form-group">
+
+                  <textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @comment.body %></textarea>
+                </div>
+
+                <button class="btn btn-success">
+                    Post
+                </button>
+          </form>
+          <br />
+          <% @page.comments.each do |comment|%>
+          <div class="panel panel-default">
+
+            <div class="panel-body">
+              <b><%= comment.name %></b>
+              <small>
+                    <%=time_ago_in_words(comment.created_at)%> ago
+              </small> <br />
+              <%= comment.body %> <br />
+
+              <% if current_user.present? %>
+                  <div class="btn-group btn-group-xs">
+
+                      <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                      Delete
+                      </a>
+                  </div>
+              <% else %>
+
+              <% end %>
+
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
 </div>

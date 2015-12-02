@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  skip_before_action :authenticate_user, only:[:show]
+  skip_before_action :authenticate_user, :only => [:show]
 
   def index
     @pages = Page.all
@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

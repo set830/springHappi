@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment.page_id = params[:page_id]
 
     if @comment.save
-      redirect_to "/comments", :notice => "Comment created successfully."
+      redirect_to :back
     else
       render 'new'
     end
@@ -49,6 +49,6 @@ class CommentsController < ApplicationController
 
     @comment.destroy
 
-    redirect_to "/comments", :notice => "Comment deleted."
+    redirect_to :back
   end
 end
