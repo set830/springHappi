@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130171354) do
+ActiveRecord::Schema.define(version: 20151201214158) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
@@ -41,9 +41,6 @@ ActiveRecord::Schema.define(version: 20151130171354) do
 
   create_table "pages", force: :cascade do |t|
     t.string   "for"
-    t.integer  "comment_id"
-    t.integer  "blog_id"
-    t.integer  "calendar_id"
     t.text     "description"
     t.string   "photo"
     t.string   "title"

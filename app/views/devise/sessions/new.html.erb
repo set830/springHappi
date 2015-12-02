@@ -1,7 +1,10 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<div class="container">
+
+
+<div class="container" style="background-image: url('/images/spring.jpg');">
+
     <h3></h3>
         <div class="centered">
           <div class="form-group">
@@ -23,12 +26,11 @@
 
             <h3></h3>
             <div class="actions" class="form-control">
-              <%= f.submit "Log in", :class => "btn btn-default"%>
+              <%= f.submit "Log in", :class => "btn btn-success"%>
             </div>
               <% end %>
               <%= render "devise/shared/links" %>
-
 </div>
 
-
+<img src="/images/spring.jpg" class="img-responsive" alt="Responsive image">
 

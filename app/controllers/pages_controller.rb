@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+
   skip_before_action :authenticate_user, only:[:show]
 
   def index
@@ -17,9 +17,6 @@ class PagesController < ApplicationController
   def create
     @page = Page.new
     @page.for = params[:for]
-    @page.comment_id = params[:comment_id]
-    @page.blog_id = params[:blog_id]
-    @page.calendar_id = params[:calendar_id]
     @page.description = params[:description]
     @page.photo = params[:photo]
     @page.title = params[:title]
@@ -40,9 +37,6 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
 
     @page.for = params[:for]
-    @page.comment_id = params[:comment_id]
-    @page.blog_id = params[:blog_id]
-    @page.calendar_id = params[:calendar_id]
     @page.description = params[:description]
     @page.photo = params[:photo]
     @page.title = params[:title]

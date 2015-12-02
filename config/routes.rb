@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
+
+
+  # Routes for the Page resource:
+  # CREATE
+  get "/pages/new", :controller => "pages", :action => "new"
+  post "/create_page", :controller => "pages", :action => "create"
+
+  # READ
+  get "/pages", :controller => "pages", :action => "index"
+  get "/pages/:id", :controller => "pages", :action => "show"
+
+  # UPDATE
+  get "/pages/:id/edit", :controller => "pages", :action => "edit"
+  post "/update_page/:id", :controller => "pages", :action => "update"
+
+  # DELETE
+  get "/delete_page/:id", :controller => "pages", :action => "destroy"
+  #------------------------------
+
   # Routes for the Blog resource:
   # CREATE
   get "/blogs/new", :controller => "blogs", :action => "new"
@@ -51,23 +70,6 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_comment/:id", :controller => "comments", :action => "destroy"
-  #------------------------------
-
-  # Routes for the Page resource:
-  # CREATE
-  get "/pages/new", :controller => "pages", :action => "new"
-  post "/create_page", :controller => "pages", :action => "create"
-
-  # READ
-  get "/pages", :controller => "pages", :action => "index"
-  get "/pages/:id", :controller => "pages", :action => "show"
-
-  # UPDATE
-  get "/pages/:id/edit", :controller => "pages", :action => "edit"
-  post "/update_page/:id", :controller => "pages", :action => "update"
-
-  # DELETE
-  get "/delete_page/:id", :controller => "pages", :action => "destroy"
   #------------------------------
 
   devise_for :users

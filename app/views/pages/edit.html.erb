@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Page #<%= @page.id %></h3>
+  <h3>Edit <%= @page.title %></h3>
 </div>
 
 <div class="row">
@@ -18,40 +18,13 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for for -->
+      <!-- Label and input for title -->
       <div class="form-group">
-        <label for="for" class="control-label">
-          For
+        <label for="title" class="control-label">
+          Title
         </label>
 
-        <input type="text" id="for" name="for" placeholder="For" class="form-control" value="<%= @page.for %>">
-      </div>
-
-      <!-- Label and input for comment_id -->
-      <div class="form-group">
-        <label for="comment_id" class="control-label">
-          Comment
-        </label>
-
-        <input type="text" id="comment_id" name="comment_id" placeholder="Comment" class="form-control" value="<%= @page.comment_id %>">
-      </div>
-
-      <!-- Label and input for blog_id -->
-      <div class="form-group">
-        <label for="blog_id" class="control-label">
-          Blog
-        </label>
-
-        <input type="text" id="blog_id" name="blog_id" placeholder="Blog" class="form-control" value="<%= @page.blog_id %>">
-      </div>
-
-      <!-- Label and input for calendar_id -->
-      <div class="form-group">
-        <label for="calendar_id" class="control-label">
-          Calendar
-        </label>
-
-        <input type="text" id="calendar_id" name="calendar_id" placeholder="Calendar" class="form-control" value="<%= @page.calendar_id %>">
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @page.title %>">
       </div>
 
       <!-- Label and input for description -->
@@ -66,28 +39,15 @@
       <!-- Label and input for photo -->
       <div class="form-group">
         <label for="photo" class="control-label">
-          Photo
+          Upload a New Photo
         </label>
 
-        <input type="text" id="photo" name="photo" placeholder="Photo" class="form-control" value="<%= @page.photo %>">
-      </div>
-
-      <!-- Label and input for title -->
-      <div class="form-group">
-        <label for="title" class="control-label">
-          Title
-        </label>
-
-        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @page.title %>">
+        <input name="photo" type="file" id="photo" name="photo" placeholder="" class="form-control" value="<%= @page.photo %>">
       </div>
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @page.user_id %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <button class="btn btn-warning">
