@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Blog #<%= @blog.id %></h3>
+  <h3>Edit</h3>
 </div>
 
 <div class="row">
@@ -30,11 +30,12 @@
       <!-- Label and input for photo -->
       <div class="form-group">
         <label for="photo" class="control-label">
-          Photo
+          Upload a New Photo
         </label>
 
-        <input type="text" id="photo" name="photo" placeholder="Photo" class="form-control" value="<%= @blog.photo %>">
+        <input name="photo" type="file" id="photo" name="photo" placeholder="" class="form-control" value="<%= @blog.photo %>">
       </div>
+
 
       <!-- Label and input for body -->
       <div class="form-group">
@@ -46,19 +47,14 @@
       </div>
 
       <!-- Label and input for page_id -->
-      <div class="form-group">
-        <label for="page_id" class="control-label">
-          Page
-        </label>
-
-        <input type="text" id="page_id" name="page_id" placeholder="Page" class="form-control" value="<%= @blog.page_id %>">
+        <input type="hidden" id="page_id" name="page_id" placeholder="Page" class="form-control" value="<%= @blog.page_id %>">
       </div>
 
       <button class="btn btn-warning">
-        Update Blog
+        Update
       </button>
       or
-      <a href="/blogs/<%= @blog.id %>">Cancel</a>
+      <a href="/pages/<%= @blog.page_id %>">Cancel</a>
     </form>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  skip_before_action :authenticate_user, only:[:show]
+  skip_before_action :authenticate_user!, only:[:show]
 
   def index
     @blogs = Blog.all
@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
     @blog.page_id = params[:page_id]
 
     if @blog.save
-      redirect_to "/blogs", :notice => "Blog created successfully."
+      redirect_to :back, :notice => "Post created."
     else
       render 'new'
     end
@@ -40,7 +40,7 @@ class BlogsController < ApplicationController
     @blog.page_id = params[:page_id]
 
     if @blog.save
-      redirect_to "/blogs", :notice => "Blog updated successfully."
+      redirect_to :back
     else
       render 'edit'
     end
@@ -51,6 +51,6 @@ class BlogsController < ApplicationController
 
     @blog.destroy
 
-    redirect_to "/blogs", :notice => "Blog deleted."
+    redirect_to :back, :notice => "Post deleted."
   end
 end

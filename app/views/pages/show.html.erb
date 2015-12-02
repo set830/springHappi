@@ -5,7 +5,11 @@
         <div class="justified">
           <br />
           <img src="<%= @page.photo %>" width="200"><br /><br />
-          <%= @page.description %>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <%= @page.description %>
+            </div>
+          </div>
         </div>
         </div>
 
@@ -69,7 +73,46 @@
           <% end %>
         </div>
         <div class="col-md-6">
+            <% if current_user.present? %>
+              <a href="/blogs/new" class="btn btn-success">Add Update</a>
+            <% else %>
 
+            <% end %>
+          <br />
+
+          <% @page.blogs.each do |blog|%>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= blog.title %></h3>
+              <small>
+                    <%=time_ago_in_words(blog.created_at)%> ago
+              </small>
+            </div>
+            <div class="panel-body">
+              <%= blog.body %>
+               <br />
+
+              <% if current_user.present? %>
+
+                  <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                      <a href="/blogs/<%= blog.id %>/edit" class="btn btn-warning">Edit</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <a href="/delete_blog/<%= blog.id %>" class="btn btn-danger" rel="nofollow">
+                      Delete
+                      </a>
+                    </div>
+                  </div>
+
+              <% else %>
+
+              <% end %>
+
+            </div>
+          </div>
+          <% end %>
         </div>
-    </div>
+        </div>
 </div>
+
