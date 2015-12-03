@@ -29,11 +29,7 @@
         </div>
     </div>
 
-    <div class="row">
-     <div class="col-md-offset-3 col-md-8">
-       <h3><%= @page.title %></h3>
-     </div>
-    </div>
+
 
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -44,48 +40,37 @@
         <div class="row">
             <div class="col-md-6">
               <div class="panel-body">
+                <h4><font color="#1f5b83"><%= @page.title %></font></h4>
                 <h6><%= @page.description %></h6>
               </div>
               <div class="panel-body">
-                <% if @page.blogs[0]? %>
+                <% if @page.blogs[0] %>
+                  <h6>
+                    Latest: <%=@page.blogs.reverse.first.title%>
+                  <small>
+                    <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
+                  </small>
+                  </h6>
+                    <%= @page.blogs.reverse.first.body %>
+                  <br />
+                    <%= @page.photo %>
+                  <br />
+                    <%= @page.blogs.reverse.first.photo %>
+                    <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
+                  <br />
+                  <br />
+                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
+                <% else %>
+                <% end %>
 
-                <h6>
-                  Latest:<%=@page.blogs.reverse.first.title%>
-
-                <small>
-                  <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
-                </small>
-                </h6>
-                  <%= @page.blogs.reverse.first.body %>
-                <br />
-
-
-                  <%= @page.photo %>
-
-                <br />
-                  <%= @page.blogs.reverse.first.photo %>
-                  <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
-
-                <br />
-                <br />
-
-                  <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
-                  <% else %>
-                  <% end %>
-                  <% if current_user.present? %>
+                <% if current_user.present? %>
                   <a href="/blogs/new" class="btn btn-success">Add Update</a>
-                  <% else %>
-                  <% end %>
-                <br /><br />
-
-
-
+                <% else %>
+                <% end %>
+                  <br />
+                  <br />
               </div>
             </div>
-
-
-
-
             <div class="col-md-6">
               <form action="/create_comment" method="post">
                   <!-- Hidden input for authenticity token to protect from forgery -->
