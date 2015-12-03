@@ -19,12 +19,17 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_page/:id", :controller => "pages", :action => "destroy"
+
+  # READ BLOG
+  get "/pages/blog/:id", :controller => "pages", :action => "blog"
+
   #------------------------------
 
   # Routes for the Blog resource:
   # CREATE
   get "/blogs/new", :controller => "blogs", :action => "new"
   post "/create_blog", :controller => "blogs", :action => "create"
+  get "/create_blog", :controller => "blogs", :action => "create"
 
   # READ
   get "/blogs", :controller => "blogs", :action => "index"

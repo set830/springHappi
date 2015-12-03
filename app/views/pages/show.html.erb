@@ -1,27 +1,93 @@
+
+
+
 <div class="container">
-
     <div class="row">
-        <div class="col-md-5">
-        <div class="justified">
+        <div class="col-md-3">
           <br />
-          <img src="<%= @page.photo %>" width="200"><br /><br />
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <%= @page.description %>
-            </div>
-          </div>
+          <img src="<%= @page.photo %>" width="200">
+          <br />
+          <br />
         </div>
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.photo %>" width="200">
+          <br />
+          <br />
         </div>
-
-        <div class="col-md-6">
-
-
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.photo %>" width="200">
+          <br />
+          <br />
+        </div>
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.photo %>" width="200">
+          <br />
+          <br />
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-5">
-        <form action="/create_comment" method="post">
+     <div class="col-md-offset-3 col-md-8">
+       <h3><%= @page.title %></h3>
+     </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">
+        </h1>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+              <div class="panel-body">
+                <h6><%= @page.description %></h6>
+              </div>
+              <div class="panel-body">
+                <% if @page.blogs[0]? %>
+
+                <h6>
+                  Latest:<%=@page.blogs.reverse.first.title%>
+
+                <small>
+                  <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
+                </small>
+                </h6>
+                  <%= @page.blogs.reverse.first.body %>
+                <br />
+
+
+                  <%= @page.photo %>
+
+                <br />
+                  <%= @page.blogs.reverse.first.photo %>
+                  <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
+
+                <br />
+                <br />
+
+                  <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
+                  <% else %>
+                  <% end %>
+                  <% if current_user.present? %>
+                  <a href="/blogs/new" class="btn btn-success">Add Update</a>
+                  <% else %>
+                  <% end %>
+                <br /><br />
+
+
+
+              </div>
+            </div>
+
+
+
+
+            <div class="col-md-6">
+              <form action="/create_comment" method="post">
                   <!-- Hidden input for authenticity token to protect from forgery -->
                   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -45,74 +111,34 @@
                 <button class="btn btn-success">
                     Post
                 </button>
-          </form>
-          <br />
-          <% @page.comments.each do |comment|%>
-          <div class="panel panel-default">
+              </form>
+              <br />
+              <% @page.comments.each do |comment|%>
+              <div class="panel panel-default">
 
-            <div class="panel-body">
-              <b><%= comment.name %></b>
-              <small>
-                    <%=time_ago_in_words(comment.created_at)%> ago
-              </small> <br />
-              <%= comment.body %> <br />
+                <div class="panel-body">
+                  <b><%= comment.name %></b>
+                  <small>
+                        <%=time_ago_in_words(comment.created_at)%> ago
+                  </small> <br />
+                  <%= comment.body %> <br />
 
-              <% if current_user.present? %>
-                  <div class="btn-group btn-group-xs">
+                  <% if current_user.present? %>
+                      <div class="btn-group btn-group-xs">
 
-                      <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
-                      Delete
-                      </a>
-                  </div>
-              <% else %>
+                          <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                          Delete
+                          </a>
+                      </div>
+                  <% else %>
 
-              <% end %>
+                  <% end %>
 
+                </div>
+              </div>
+                <% end %>
             </div>
-          </div>
-          <% end %>
         </div>
-        <div class="col-md-6">
-            <% if current_user.present? %>
-              <a href="/blogs/new" class="btn btn-success">Add Update</a>
-            <% else %>
-
-            <% end %>
-          <br />
-
-          <% @page.blogs.each do |blog|%>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= blog.title %></h3>
-              <small>
-                    <%=time_ago_in_words(blog.created_at)%> ago
-              </small>
-            </div>
-            <div class="panel-body">
-              <%= blog.body %>
-               <br />
-
-              <% if current_user.present? %>
-
-                  <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                      <a href="/blogs/<%= blog.id %>/edit" class="btn btn-warning">Edit</a>
-                    </div>
-                    <div class="btn-group" role="group">
-                      <a href="/delete_blog/<%= blog.id %>" class="btn btn-danger" rel="nofollow">
-                      Delete
-                      </a>
-                    </div>
-                  </div>
-
-              <% else %>
-
-              <% end %>
-
-            </div>
-          </div>
-          <% end %>
-        </div>
-        </div>
+      </div>
+    </div>
 </div>
-

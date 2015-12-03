@@ -57,4 +57,10 @@ class PagesController < ApplicationController
 
     redirect_to "/pages", :notice => "Page deleted."
   end
+
+  def blog
+    @page = Page.find(params[:id])
+  end
+
+
 end
