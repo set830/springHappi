@@ -27,12 +27,6 @@
         <input type="text" id="title" name="title" placeholder="" class="form-control" value="<%= @page.title %>">
       </div>
 
-      <!-- Label and input for for -->
-      <div class="form-group">
-
-        <input type="hidden" id="for" name="for" placeholder="" class="form-control" value="<%= @page.for %>">
-      </div>
-
       <!-- Label and input for description -->
       <div class="form-group">
         <label for="description" class="control-label">
@@ -48,7 +42,8 @@
           Upload a Photo
         </label>
 
-        <input name="photo" type="file" id="photo" name="photo" placeholder="" class="form-control" value="<%= @page.photo %>">
+        <input name="photo" type="file" name="photos" multiple>
+
       </div>
 
       <!-- Label and input for user_id -->

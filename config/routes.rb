@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
 
+  # Routes for the Page resource:
+  # CREATE
+  get "/pages/new", :controller => "pages", :action => "new"
+  post "/create_page", :controller => "pages", :action => "create"
+
+  # READ
+  get "/pages", :controller => "pages", :action => "index"
+  get "/pages/:id", :controller => "pages", :action => "show"
+
+  # UPDATE
+  get "/pages/:id/edit", :controller => "pages", :action => "edit"
+  post "/update_page/:id", :controller => "pages", :action => "update"
+
+  # DELETE
+  get "/delete_page/:id", :controller => "pages", :action => "destroy"
+  #------------------------------
+
   root "pages#index"
 
 

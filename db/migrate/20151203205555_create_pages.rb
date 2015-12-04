@@ -1,10 +1,9 @@
 class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
-      t.string :for
+      t.string :title
       t.text :description
       t.string :photo
-      t.string :title
       t.integer :user_id
 
       t.timestamps
