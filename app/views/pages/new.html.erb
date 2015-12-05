@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Page</h3>
+  <h3></h3>
 </div>
 
 <div class="row">
@@ -21,7 +21,7 @@
       <!-- Label and input for title -->
       <div class="form-group">
         <label for="title" class="control-label">
-          Page Title
+          Title
         </label>
 
         <input type="text" id="title" name="title" placeholder="" class="form-control" value="<%= @page.title %>">
@@ -42,25 +42,25 @@
           Upload Photos (Up to 4)
         </label>
 
-        <input type="text" id="firstimage" name="firstimage" placeholder="" class="form-control" value="<%= @page.firstimage %>">
+        <input type="file" id="firstimage" name="firstimage" placeholder="" class="form-control" value="<%= @page.firstimage %>">
       </div>
 
       <!-- Label and input for secondimage -->
       <div class="form-group">
 
-        <input type="text" id="secondimage" name="secondimage" placeholder="" class="form-control" value="<%= @page.secondimage %>">
+        <input type="file" id="secondimage" name="secondimage" placeholder="" class="form-control" value="<%= @page.secondimage %>">
       </div>
 
       <!-- Label and input for thirdimage -->
       <div class="form-group">
 
-        <input type="text" id="thirdimage" name="thirdimage" placeholder="" class="form-control" value="<%= @page.thirdimage %>">
+        <input type="file" id="thirdimage" name="thirdimage" placeholder="" class="form-control" value="<%= @page.thirdimage %>">
       </div>
 
       <!-- Label and input for fourthimage -->
       <div class="form-group">
 
-        <input type="text" id="fourthimage" name="fourthimage" placeholder="" class="form-control" value="<%= @page.fourthimage %>">
+        <input type="file" id="fourthimage" name="fourthimage" placeholder="" class="form-control" value="<%= @page.fourthimage %>">
       </div>
 
       <!-- Label and input for user_id -->
