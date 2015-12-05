@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "/delete_page/:id", :controller => "pages", :action => "destroy"
 
   # READ BLOG
-  get "/pages/blog/:id", :controller => "pages", :action => "blog"
+  get "/pages/blog/:id",:controller => "pages", :action => "blog"
 
   #------------------------------
 

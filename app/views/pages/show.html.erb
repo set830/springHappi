@@ -2,30 +2,29 @@
     <div class="row">
         <div class="col-md-3">
           <br />
-          <img src="<%= @page.firstimage %>" width="200">
+          <img src="<%= @page.firstimage %>" class="img-responsive">
           <br />
           <br />
         </div>
         <div class="col-md-3">
           <br />
-          <img src="<%= @page.secondimage %>" width="200">
+          <img src="<%= @page.secondimage %>" class="img-responsive">
           <br />
           <br />
         </div>
         <div class="col-md-3">
           <br />
-          <img src="<%= @page.thirdimage %>" width="200">
+          <img src="<%= @page.thirdimage %>" class="img-responsive">
           <br />
           <br />
         </div>
         <div class="col-md-3">
           <br />
-          <img src="<%= @page.fourthimage %>" width="200">
+          <img src="<%= @page.fourthimage %>" class="img-responsive">
           <br />
           <br />
         </div>
     </div>
-
 
 
     <div class="panel panel-default">
@@ -50,14 +49,12 @@
                   </h6>
                     <%= @page.blogs.reverse.first.body %>
                   <br />
-                    <%= @page.firstimage %>
-                  <br />
-                    <%= @page.blogs.reverse.first.photo %>
-                    <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
+                    <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
                   <br />
                   <br />
-                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
+                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-primary">More</a>
                 <% else %>
+
                 <% end %>
 
                 <% if current_user.present? %>

@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_blog" method="post">
+    <form enctype="multipart/form-data" action="/create_blog" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -32,7 +32,7 @@
           Upload a Photo (Optional)
         </label>
 
-        <input name="photo" type="file" id="photo" name="photo" placeholder="Upload a Photo (Optional)" class="form-control" value="<%= @blog.photo %>">
+        <input type="file" id="photo" name="photo" placeholder="Upload a Photo (Optional)" class="form-control" value="<%= @blog.photo %>">
       </div>
 
       <!-- Label and input for body -->
