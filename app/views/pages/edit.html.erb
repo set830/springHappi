@@ -1,60 +1,126 @@
-<!-- Validation failure messages -->
-<% if @page.errors.any? %>
-  <% @page.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.firstimage %>" width="200">
+          <br />
+          <br />
+        </div>
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.secondimage %>" width="200">
+          <br />
+          <br />
+        </div>
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.thirdimage %>" width="200">
+          <br />
+          <br />
+        </div>
+        <div class="col-md-3">
+          <br />
+          <img src="<%= @page.fourthimage %>" width="200">
+          <br />
+          <br />
+        </div>
     </div>
-  <% end %>
-<% end %>
 
-<div class="page-header">
-  <h3>Edit <%= @page.title %></h3>
-</div>
 
-<div class="row">
-  <div class="col-md-12">
-    <form action="/update_page/<%= @page.id %>" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for title -->
-      <div class="form-group">
-        <label for="title" class="control-label">
-          Title
-        </label>
-
-        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @page.title %>">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title">
+        </h1>
       </div>
+      <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+              <div class="panel-body">
+                <h4><font color="#1f5b83"><%= @page.title %></font></h4>
+                <h6><%= @page.description %></h6>
+              </div>
+              <div class="panel-body">
+                <% if @page.blogs[0] %>
+                  <h6>
+                    Latest: <%=@page.blogs.reverse.first.title%>
+                  <small>
+                    <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
+                  </small>
+                  </h6>
+                    <%= @page.blogs.reverse.first.body %>
+                  <br />
+                    <%= @page.firstimage %>
+                  <br />
+                    <%= @page.blogs.reverse.first.photo %>
+                    <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
+                  <br />
+                  <br />
+                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
+                <% else %>
+                <% end %>
 
-      <!-- Label and input for description -->
-      <div class="form-group">
-        <label for="description" class="control-label">
-          Description
-        </label>
+                <% if current_user.present? %>
+                  <a href="/blogs/new" class="btn btn-success">Add Update</a>
+                <% else %>
+                <% end %>
+                  <br />
+                  <br />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <form action="/create_comment" method="post">
+                  <!-- Hidden input for authenticity token to protect from forgery -->
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @page.description %></textarea>
+                <!-- Label and input for page_id -->
+                <div class="form-group">
+                  <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
+                </div>
+
+                <!-- Label and input for user_id -->
+                <div class="form-group">
+
+                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @comment.name %>">
+                </div>
+
+                <!-- Label and input for body -->
+                <div class="form-group">
+
+                  <textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @comment.body %></textarea>
+                </div>
+
+                <button class="btn btn-success">
+                    Post
+                </button>
+              </form>
+              <br />
+              <% @page.comments.each do |comment|%>
+              <div class="panel panel-default">
+
+                <div class="panel-body">
+                  <b><%= comment.name %></b>
+                  <small>
+                        <%=time_ago_in_words(comment.created_at)%> ago
+                  </small> <br />
+                  <%= comment.body %> <br />
+
+                  <% if current_user.present? %>
+                      <div class="btn-group btn-group-xs">
+
+                          <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                          Delete
+                          </a>
+                      </div>
+                  <% else %>
+
+                  <% end %>
+
+                </div>
+              </div>
+                <% end %>
+            </div>
+        </div>
       </div>
-
-      <!-- Label and input for photo -->
-      <div class="form-group">
-        <label for="photo" class="control-label">
-          Upload a New Photo
-        </label>
-
-        <input name="photo" type="file" id="photo" name="photo" placeholder="" class="form-control" value="<%= @page.photo %>">
-      </div>
-
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
-      </div>
-
-      <button class="btn btn-warning">
-        Update Page
-      </button>
-      or
-      <a href="/pages/<%= @page.id %>">Cancel</a>
-    </form>
-  </div>
+    </div>
 </div>

@@ -36,14 +36,31 @@
         <textarea id="description" name="description" placeholder="" class="form-control" rows="3"><%= @page.description %></textarea>
       </div>
 
-      <!-- Label and input for photo -->
+      <!-- Label and input for firstimage -->
       <div class="form-group">
-        <label for="photo" class="control-label">
-          Upload a Photo
+        <label for="firstimage" class="control-label">
+          Upload Photos (Up to 4)
         </label>
 
-        <input name="photo" type="file" name="photos" multiple>
+        <input type="text" id="firstimage" name="firstimage" placeholder="" class="form-control" value="<%= @page.firstimage %>">
+      </div>
 
+      <!-- Label and input for secondimage -->
+      <div class="form-group">
+
+        <input type="text" id="secondimage" name="secondimage" placeholder="" class="form-control" value="<%= @page.secondimage %>">
+      </div>
+
+      <!-- Label and input for thirdimage -->
+      <div class="form-group">
+
+        <input type="text" id="thirdimage" name="thirdimage" placeholder="" class="form-control" value="<%= @page.thirdimage %>">
+      </div>
+
+      <!-- Label and input for fourthimage -->
+      <div class="form-group">
+
+        <input type="text" id="fourthimage" name="fourthimage" placeholder="" class="form-control" value="<%= @page.fourthimage %>">
       </div>
 
       <!-- Label and input for user_id -->

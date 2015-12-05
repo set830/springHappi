@@ -16,9 +16,12 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new
-    @page.description = params[:description]
-    @page.photo = params[:photo]
     @page.title = params[:title]
+    @page.description = params[:description]
+    @page.firstimage = params[:firstimage]
+    @page.secondimage = params[:secondimage]
+    @page.thirdimage = params[:thirdimage]
+    @page.fourthimage = params[:fourthimage]
     @page.user_id = params[:user_id]
 
     if @page.save
@@ -35,10 +38,12 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
 
-    @page.for = params[:for]
-    @page.description = params[:description]
-    @page.photo = params[:photo]
     @page.title = params[:title]
+    @page.description = params[:description]
+    @page.firstimage = params[:firstimage]
+    @page.secondimage = params[:secondimage]
+    @page.thirdimage = params[:thirdimage]
+    @page.fourthimage = params[:fourthimage]
     @page.user_id = params[:user_id]
 
     if @page.save

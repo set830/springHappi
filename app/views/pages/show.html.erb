@@ -1,126 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.photo %>" width="200">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.photo %>" width="200">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.photo %>" width="200">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.photo %>" width="200">
-          <br />
-          <br />
-        </div>
+<div class="page-header">
+  <h3>Page #<%= @page.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Title</dt>
+      <dd><%= @page.title %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @page.description %></dd>
+
+      <dt>Firstimage</dt>
+      <dd><%= @page.firstimage %></dd>
+
+      <dt>Secondimage</dt>
+      <dd><%= @page.secondimage %></dd>
+
+      <dt>Thirdimage</dt>
+      <dd><%= @page.thirdimage %></dd>
+
+      <dt>Fourthimage</dt>
+      <dd><%= @page.fourthimage %></dd>
+
+      <dt>User</dt>
+      <dd><%= @page.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/pages" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_page/<%= @page.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
     </div>
-
-
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title">
-        </h1>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-            <div class="col-md-6">
-              <div class="panel-body">
-                <h4><font color="#1f5b83"><%= @page.title %></font></h4>
-                <h6><%= @page.description %></h6>
-              </div>
-              <div class="panel-body">
-                <% if @page.blogs[0] %>
-                  <h6>
-                    Latest: <%=@page.blogs.reverse.first.title%>
-                  <small>
-                    <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
-                  </small>
-                  </h6>
-                    <%= @page.blogs.reverse.first.body %>
-                  <br />
-                    <%= @page.photo %>
-                  <br />
-                    <%= @page.blogs.reverse.first.photo %>
-                    <img src="<%= @page.blogs.reverse.first.photo %>" width="150">
-                  <br />
-                  <br />
-                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-default">More</a>
-                <% else %>
-                <% end %>
-
-                <% if current_user.present? %>
-                  <a href="/blogs/new" class="btn btn-success">Add Update</a>
-                <% else %>
-                <% end %>
-                  <br />
-                  <br />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <form action="/create_comment" method="post">
-                  <!-- Hidden input for authenticity token to protect from forgery -->
-                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-                <!-- Label and input for page_id -->
-                <div class="form-group">
-                  <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
-                </div>
-
-                <!-- Label and input for user_id -->
-                <div class="form-group">
-
-                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @comment.name %>">
-                </div>
-
-                <!-- Label and input for body -->
-                <div class="form-group">
-
-                  <textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @comment.body %></textarea>
-                </div>
-
-                <button class="btn btn-success">
-                    Post
-                </button>
-              </form>
-              <br />
-              <% @page.comments.each do |comment|%>
-              <div class="panel panel-default">
-
-                <div class="panel-body">
-                  <b><%= comment.name %></b>
-                  <small>
-                        <%=time_ago_in_words(comment.created_at)%> ago
-                  </small> <br />
-                  <%= comment.body %> <br />
-
-                  <% if current_user.present? %>
-                      <div class="btn-group btn-group-xs">
-
-                          <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
-                          Delete
-                          </a>
-                      </div>
-                  <% else %>
-
-                  <% end %>
-
-                </div>
-              </div>
-                <% end %>
-            </div>
-        </div>
-      </div>
-    </div>
+  </div>
 </div>
