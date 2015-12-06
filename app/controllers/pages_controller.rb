@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     @page.user_id = params[:user_id]
 
     if @page.save
-      redirect_to "/pages", :notice => "Page created successfully."
+      redirect_to "/pages/#{@page.id}", :notice => "Page created successfully."
     else
       render 'new'
     end
