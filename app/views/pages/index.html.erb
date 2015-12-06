@@ -14,17 +14,20 @@
         <th>Page</th>
       </tr>
       <% @pages.each do |page| %>
-      <tr>
-        <td><%= page.title %></td>
-        <td>
-          <%= page.created_at.strftime('%B %e, %Y at %l:%M%P') %>
-        </td>
-        <td>
-          <a href="/pages/<%= page.id %>" class="btn btn-primary">Show</a>
-          <a href="/pages/<%= page.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_page/<%= page.id %>" data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
+        <% if page.user == current_user %>
+          <tr>
+            <td><%= page.title %></td>
+            <td>
+               <%= page.created_at.strftime('%B %e, %Y at %l:%M%P') %>
+            </td>
+            <td>
+                <a href="/pages/<%= page.id %>" class="btn btn-primary">Show</a>
+                <a href="/pages/<%= page.id %>/edit" class="btn btn-warning">Edit</a>
+                <a href="/delete_page/<%= page.id %>" data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow">Delete</a>
+            </td>
+          </tr>
+        <% end %>
+
       <% end %>
     </table>
   </div>
