@@ -42,7 +42,6 @@ class PagesController < ApplicationController
 
   def edit
     @page = Page.find(params[:id])
-
   end
 
   def update
@@ -57,7 +56,7 @@ class PagesController < ApplicationController
     @page.user_id = params[:user_id]
 
     if @page.save
-      redirect_to "/pages", :notice => "Page updated successfully."
+      redirect_to "/pages/#{@page.id}", :notice => "Page updated successfully."
     else
       render 'edit'
     end
