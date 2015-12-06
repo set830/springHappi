@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   # Routes for the Blog resource:
   # CREATE
-  get "/blogs/new", :controller => "blogs", :action => "new"
+  get "/blogs/new/:id", :controller => "blogs", :action => "new"
   post "/create_blog", :controller => "blogs", :action => "create"
   get "/create_blog", :controller => "blogs", :action => "create"
 

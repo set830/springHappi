@@ -58,7 +58,7 @@
                 <% end %>
 
                 <% if current_user.present? %>
-                  <a href="/blogs/new" class="btn btn-success">Add Update</a>
+                  <a href="/blogs/new/<%= @page.id %>" class="btn btn-success">Add Update</a>
                 <% else %>
                 <% end %>
                   <br />
@@ -84,7 +84,7 @@
                 <!-- Label and input for body -->
                 <div class="form-group">
 
-                  <textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @comment.body %></textarea>
+                  <input type="text" textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @comment.body %></textarea>
                 </div>
 
                 <button class="btn btn-success">
@@ -92,7 +92,7 @@
                 </button>
               </form>
               <br />
-              <% @page.comments.each do |comment|%>
+              <% @page.comments.reverse.each do |comment|%>
               <div class="panel panel-default">
 
                 <div class="panel-body">

@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
 
   def new
     @blog = Blog.new
+    @page = Page.find(params[:id])
   end
 
   def create
@@ -21,7 +22,7 @@ class BlogsController < ApplicationController
     @blog.page_id = params[:page_id]
 
     if @blog.save
-      redirect_to :back, :notice => "Post created."
+      redirect_to "/pages/#{@blog.page_id}", :notice => "Post created."
     else
       render 'new'
     end

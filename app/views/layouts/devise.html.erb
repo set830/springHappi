@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
   <meta charset="utf-8">
   <title>SpringHappi</title>
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style>
+  html, body {
+    height: 100%;
+  }
 
+  .jumbotron {
+    height: 100%;
+  }
+    .panel-transparent {
+        background: none;
+    }
+
+    .panel-transparent .panel-heading{
+        background: rgba(122, 130, 136, 0.2)!important;
+    }
+
+    .panel-transparent .panel-body{
+        background: rgba(46, 51, 56, 0.2)!important;
+    }
+
+</style>
   <style>
     /* Only necessary if you are using navbar-fixed-top */
     body {
@@ -68,9 +90,9 @@
         <%= alert %>
       </div>
     <% end %>
+  </div>
 
     <%= yield %>
-  </div>
 
 </body>
 </html>
