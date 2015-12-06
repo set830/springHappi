@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git"
 
+gem 'activeadmin', '~> 1.0.0.pre1'
+
 gem 'devise'
 
 gem 'carrierwave'
