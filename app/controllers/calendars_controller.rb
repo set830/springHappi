@@ -1,6 +1,15 @@
 class CalendarsController < ApplicationController
   skip_before_action :authenticate_user!, only:[:index, :show, :edit, :update]
 
+  before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_owner
+    @calendar = Calendar.find(params[:id])
+    if @calendar.user != current_user
+      redirect_to root_url, :alert => "Not authorized"
+    end
+  end
+
   def index
     @calendars = Calendar.all
   end

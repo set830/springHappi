@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   get "/create_blog", :controller => "blogs", :action => "create"
 
   # READ
-  get "/blogs", :controller => "blogs", :action => "index"
+  #get "/blogs", :controller => "blogs", :action => "index"
   get "/blogs/:id", :controller => "blogs", :action => "show"
 
   # UPDATE
@@ -85,12 +85,12 @@ Rails.application.routes.draw do
   post "/create_comment", :controller => "comments", :action => "create"
 
   # READ
-  get "/comments", :controller => "comments", :action => "index"
+  #get "/comments", :controller => "comments", :action => "index"
   get "/comments/:id", :controller => "comments", :action => "show"
 
   # UPDATE
-  get "/comments/:id/edit", :controller => "comments", :action => "edit"
-  post "/update_comment/:id", :controller => "comments", :action => "update"
+  #get "/comments/:id/edit", :controller => "comments", :action => "edit"
+  #post "/update_comment/:id", :controller => "comments", :action => "update"
 
   # DELETE
   get "/delete_comment/:id", :controller => "comments", :action => "destroy"

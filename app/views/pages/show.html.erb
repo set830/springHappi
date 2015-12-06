@@ -57,7 +57,7 @@
 
                 <% end %>
 
-                <% if current_user.present? %>
+                <% if current_user == @page.user %>
                   <a href="/blogs/new/<%= @page.id %>" class="btn btn-success">Add Update</a>
                 <% else %>
                 <% end %>

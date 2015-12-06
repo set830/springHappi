@@ -1,6 +1,15 @@
 class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only:[:show]
 
+  before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_owner
+    @blog = Blog.find(params[:id])
+    if @blog.user != current_user
+      redirect_to root_url, :alert => "Not authorized"
+    end
+  end
+
   def index
     @blogs = Blog.all
   end

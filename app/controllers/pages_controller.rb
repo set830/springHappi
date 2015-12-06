@@ -1,6 +1,15 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:show]
 
+  before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_owner
+    @page = Page.find(params[:id])
+    if @page.user != current_user
+      redirect_to root_url, :alert => "Not authorized"
+    end
+  end
+
   def index
     @pages = Page.all
   end
