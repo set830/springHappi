@@ -19,7 +19,10 @@
             <div class="panel-body">
               <%= blog.body %>
                <br />
-              <img src="<%= blog.photo %>" width="200">
+                <% if blog.photo? %>
+                  <img src="<%= blog.photo %>" width="200">
+                <% else %>
+                <% end %>
 
               <% if current_user.present? %>
 

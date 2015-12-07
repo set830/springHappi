@@ -49,12 +49,13 @@
                   </h6>
                     <%= @page.blogs.reverse.first.body %>
                   <br />
-                    <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
+                    <% if @page.blogs.reverse.first.photo? %>
+                      <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
+                    <% end %>
                   <br />
                   <br />
                     <a href="/pages/blog/<%= @page.id %>" class="btn btn-primary">More</a>
                 <% else %>
-
                 <% end %>
 
                 <% if current_user == @page.user %>
