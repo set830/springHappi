@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
 
+  # Routes for the Posting resource:
+  # CREATE
+  get "/postings/new", :controller => "postings", :action => "new"
+  post "/create_posting", :controller => "postings", :action => "create"
+
+  # READ
+  get "/postings", :controller => "postings", :action => "index"
+  get "/postings/:id", :controller => "postings", :action => "show"
+
+  # UPDATE
+  get "/postings/:id/edit", :controller => "postings", :action => "edit"
+  post "/update_posting/:id", :controller => "postings", :action => "update"
+
+  # DELETE
+  get "/delete_posting/:id", :controller => "postings", :action => "destroy"
+  #------------------------------
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Routes for the Page resource:
@@ -77,23 +94,6 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_calendar/:id", :controller => "calendars", :action => "destroy"
-  #------------------------------
-
-  # Routes for the Comment resource:
-  # CREATE
-  get "/comments/new", :controller => "comments", :action => "new"
-  post "/create_comment", :controller => "comments", :action => "create"
-
-  # READ
-  get "/comments", :controller => "comments", :action => "index"
-  get "/comments/:id", :controller => "comments", :action => "show"
-
-  # UPDATE
-  get "/comments/:id/edit", :controller => "comments", :action => "edit"
-  post "/update_comment/:id", :controller => "comments", :action => "update"
-
-  # DELETE
-  get "/delete_comment/:id", :controller => "comments", :action => "destroy"
   #------------------------------
 
   devise_for :users

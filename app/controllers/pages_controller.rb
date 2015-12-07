@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
-    @comment = Comment.new
+    @posting = Posting.new
   end
 
   def new
