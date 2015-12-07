@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 
   def current_user_must_be_owner
     @blog = Blog.find(params[:id])
-    if @blog.user != current_user
+    if @blog.page.user != current_user
       redirect_to root_url, :alert => "Not authorized"
     end
   end
@@ -61,6 +61,6 @@ class BlogsController < ApplicationController
 
     @blog.destroy
 
-    redirect_to :back, :notice => "Post deleted."
+    redirect_to "/pages/blog/#{@blog.page_id}", :notice => "Post deleted."
   end
 end

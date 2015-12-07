@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Page</th>
         <th>Actions</th>
+        <th>ID</th>
       </tr>
 
       <% @comments.each do |comment| %>
@@ -25,6 +26,7 @@
           <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
+        <td><%= comment.id %></td>
       </tr>
       <% end %>
     </table>

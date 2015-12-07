@@ -5,10 +5,11 @@ class CommentsController < ApplicationController
 
   def current_user_must_be_owner
     @comment = Comment.find(params[:id])
-    if @comment.user != current_user
+    if @comment.page.user != current_user
       redirect_to root_url, :alert => "Not authorized"
     end
   end
+
 
   def index
     @comments = Comment.all
@@ -55,9 +56,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-
     @comment.destroy
-
     redirect_to :back
+
   end
 end

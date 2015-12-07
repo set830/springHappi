@@ -102,7 +102,7 @@
                   </small> <br />
                   <%= comment.body %> <br />
 
-                  <% if current_user.present? %>
+                  <% if current_user == @page.user %>
                       <div class="btn-group btn-group-xs">
 
                           <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
