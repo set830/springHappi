@@ -1,5 +1,5 @@
 class PostingsController < ApplicationController
-skip_before_action :authenticate_user!, only:[:index, :show, :edit, :update]
+  skip_before_action :authenticate_user!, only:[:create]
 
   before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
 
@@ -9,7 +9,6 @@ skip_before_action :authenticate_user!, only:[:index, :show, :edit, :update]
       redirect_to root_url, :alert => "Not authorized"
     end
   end
-
 
   def index
     @postings = Posting.all

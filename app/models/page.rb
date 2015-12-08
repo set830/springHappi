@@ -3,7 +3,6 @@ class Page < ActiveRecord::Base
   validates :title, :presence => true
   validates :description, :presence => true
 
-  has_many :calendars
   has_many :blogs , :class_name => "Blog", :foreign_key => "page_id"
   has_many :postings , :class_name => "Posting", :foreign_key => "page_id"
 

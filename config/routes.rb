@@ -79,23 +79,6 @@ Rails.application.routes.draw do
   get "/delete_blog/:id", :controller => "blogs", :action => "destroy"
   #------------------------------
 
-  # Routes for the Calendar resource:
-  # CREATE
-  get "/calendars/new", :controller => "calendars", :action => "new"
-  post "/create_calendar", :controller => "calendars", :action => "create"
-
-  # READ
-  get "/calendars", :controller => "calendars", :action => "index"
-  get "/calendars/:id", :controller => "calendars", :action => "show"
-
-  # UPDATE
-  get "/calendars/:id/edit", :controller => "calendars", :action => "edit"
-  post "/update_calendar/:id", :controller => "calendars", :action => "update"
-
-  # DELETE
-  get "/delete_calendar/:id", :controller => "calendars", :action => "destroy"
-  #------------------------------
-
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
