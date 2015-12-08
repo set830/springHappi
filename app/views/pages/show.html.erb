@@ -36,12 +36,16 @@
         <div class="row">
             <div class="col-md-6">
               <div class="panel-body">
-                <h4><font color="#1f5b83"><%= @page.title %></font></h4>
-                <h6><%= @page.description %></h6>
+                <h4><font color="#1f5b83"><%= @page.title %></font>
+                <%= @disabledDatesArray %>
                 <% if current_user == @page.user %>
                   <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">Edit</a>
                 <% else %>
                 <% end %>
+                </h4>
+                <h6><%= @page.description %></h6>
+
+
               </div>
               <div class="panel-body">
                 <% if @page.blogs[0] %>
@@ -88,12 +92,14 @@
                 <!-- Label and input for prayer date -->
                 <div class="form-group">
                   <div class='input-group date'>
-                    <input type='text' name="prayerdate" placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker5' value="<%= @posting.prayerdate %>" />
+                    <input type='text' name="prayerdate" placeholder="Claim a prayer commitment date" class="form-control" id='datetimepicker5'" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div>
                 </div>
+
+
 
                 <!-- Label and input for body -->
                 <div class="form-group">
@@ -141,7 +147,7 @@
   $(function () {
     $('#datetimepicker5').datetimepicker({
       format: "dddd, MMMM Do YYYY",
-      disabledDates:[moment("12/09/2015")]
+      disabledDates:[]
     })
   });
 </script>

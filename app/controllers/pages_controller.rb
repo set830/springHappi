@@ -17,6 +17,8 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     @posting = Posting.new
+    dateArray = Posting.where(page_id: params[:id]).pluck(:prayerdate)
+    @disabledDatesArray = dateArray.map{|x| x.inspect}.map{|x| x.inspect}.join(', ')
   end
 
   def new
