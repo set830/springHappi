@@ -82,14 +82,22 @@
 
                 <!-- Label and input for user_id -->
                 <div class="form-group">
-
                   <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @posting.name %>">
+                </div>
+
+                <!-- Label and input for prayer date -->
+                <div class="form-group">
+                  <div class='input-group date'>
+                    <input type='text' placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker4' />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
                 </div>
 
                 <!-- Label and input for body -->
                 <div class="form-group">
-
-                  <input type="text" textarea id="body" name="body" placeholder="Add a comment" class="form-control" rows="1"><%= @posting.body %></textarea>
+                  <input type="text" textarea id="body" name="body" placeholder="Message" class="form-control" rows="1"><%= @posting.body %></textarea>
                 </div>
 
                 <button class="btn btn-success">
@@ -126,3 +134,13 @@
       </div>
     </div>
 </div>
+
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker4').datetimepicker({
+      format:"dddd, MMMM Do YYYY"
+    });
+  });
+</script>
