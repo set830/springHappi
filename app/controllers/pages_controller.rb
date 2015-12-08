@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:show]
+  skip_before_action :authenticate_user!, :only => [:show, :blog]
 
   before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
 
