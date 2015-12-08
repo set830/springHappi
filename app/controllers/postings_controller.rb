@@ -32,7 +32,7 @@ skip_before_action :authenticate_user!, only:[:index, :show, :edit, :update]
     if @posting.save
       redirect_to :back
     else
-      render 'new'
+      redirect_to :back, :notice => "Please fill in both name and comment."
     end
   end
 

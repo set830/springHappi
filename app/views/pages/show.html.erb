@@ -38,11 +38,15 @@
               <div class="panel-body">
                 <h4><font color="#1f5b83"><%= @page.title %></font></h4>
                 <h6><%= @page.description %></h6>
+                <% if current_user == @page.user %>
+                  <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">Edit</a>
+                <% else %>
+                <% end %>
               </div>
               <div class="panel-body">
                 <% if @page.blogs[0] %>
                   <h6>
-                    Latest: <%=@page.blogs.reverse.first.title%>
+                    <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
                   <small>
                     <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
                   </small>
@@ -59,7 +63,7 @@
                 <% end %>
 
                 <% if current_user == @page.user %>
-                  <a href="/blogs/new/<%= @page.id %>" class="btn btn-success">Add Update</a>
+                  <a href="/blogs/new/<%= @page.id %>" class="btn btn-warning">Add Update</a>
                 <% else %>
                 <% end %>
                   <br />
@@ -85,7 +89,7 @@
                 <!-- Label and input for body -->
                 <div class="form-group">
 
-                  <input type="text" textarea id="body" name="body" placeholder="Add Comment" class="form-control" rows="1"><%= @posting.body %></textarea>
+                  <input type="text" textarea id="body" name="body" placeholder="Add a comment" class="form-control" rows="1"><%= @posting.body %></textarea>
                 </div>
 
                 <button class="btn btn-success">
