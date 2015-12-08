@@ -25,6 +25,7 @@ class PostingsController < ApplicationController
   def create
     @posting = Posting.new
     @posting.name = params[:name]
+    @posting.prayerdate = params[:prayerdate]
     @posting.body = params[:body]
     @posting.page_id = params[:page_id]
 

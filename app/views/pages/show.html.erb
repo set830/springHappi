@@ -80,7 +80,7 @@
                   <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
                 </div>
 
-                <!-- Label and input for user_id -->
+                <!-- Label and input for name -->
                 <div class="form-group">
                   <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @posting.name %>">
                 </div>
@@ -88,7 +88,7 @@
                 <!-- Label and input for prayer date -->
                 <div class="form-group">
                   <div class='input-group date'>
-                    <input type='text' placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker4' />
+                    <input type='text' name="prayerdate" placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker4' value="<%= @posting.prayerdate %>" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -107,7 +107,7 @@
               <br />
               <% @page.postings.reverse.each do |comment|%>
               <div class="panel panel-default">
-
+              <% if comment.body? %>
                 <div class="panel-body">
                   <b><%= comment.name %></b>
                   <small>
@@ -123,10 +123,10 @@
                           </a>
                       </div>
                   <% else %>
-
                   <% end %>
-
                 </div>
+              <% else %>
+              <% end %>
               </div>
                 <% end %>
             </div>
@@ -140,9 +140,7 @@
 <script type="text/javascript">
   $(function () {
     $('#datetimepicker4').datetimepicker({
-      format:"dddd, MMMM Do YYYY"
-      defaultDate: "11/1/2013",
-      disabledDates: []
-    });
+      format: "dddd, MMMM Do YYYY",
+    })
   });
 </script>
