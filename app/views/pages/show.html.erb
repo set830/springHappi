@@ -88,7 +88,7 @@
                 <!-- Label and input for prayer date -->
                 <div class="form-group">
                   <div class='input-group date'>
-                    <input type='text' name="prayerdate" placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker4' value="<%= @posting.prayerdate %>" />
+                    <input type='text' name="prayerdate" placeholder="Select a prayer commitment date" class="form-control" id='datetimepicker5' value="<%= @posting.prayerdate %>" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -139,8 +139,9 @@
 
 <script type="text/javascript">
   $(function () {
-    $('#datetimepicker4').datetimepicker({
+    $('#datetimepicker5').datetimepicker({
       format: "dddd, MMMM Do YYYY",
+      disabledDates:[moment("12/09/2015")]
     })
   });
 </script>
