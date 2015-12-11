@@ -135,7 +135,6 @@
               <% end %>
 
               <% if @page.postings.reverse[5] %>
-                <a href="/pages/postings/<%= @page.id %>" class="btn btn-primary">More</a>
                   <dev class="MoreButton">
                     <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Show More
@@ -143,7 +142,7 @@
                   </dev>
 
                   <div class="collapse" id="collapseExample">
-                      <% @page.postings.reverse[5..100].each do |comment|%>
+                      <% @page.postings.reverse[5..@page.postings.length].each do |comment|%>
                 <div class="panel panel-default">
                   <% if comment.body? %>
                     <div class="panel-body">
