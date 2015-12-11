@@ -45,6 +45,10 @@
             <h6><%= simple_format(@page.description) %></h6>
           </div>
           <div class="panel-body">
+            <% if current_user == @page.user %>
+                <a href="/blogs/new/<%= @page.id %>" class="btn btn-warning">Add Update</a>
+            <% else %>
+            <% end %>
             <% if @page.blogs[0] %>
               <h6>
                 <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
@@ -58,11 +62,16 @@
                   <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
                 <% end %>
                 <br />
+                <% if current_user == @page.user %>
+                  <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group-xs" role="group">
+                      <a href="/blogs/<%= @page.blogs.reverse.first.id %>/edit" class="btn btn-warning">Edit</a>
+                      <a href="/delete_blog/<%= @page.blogs.reverse.first.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+                    </div>
+                  </div>
+                <% else %>
+                <% end %>
                 <br />
-              <% if current_user == @page.user %>
-                <a href="/blogs/new/<%= @page.id %>" class="btn btn-warning">Add Update</a>
-              <% else %>
-              <% end %>
 
               <% if @page.blogs[1] %>
                 <div class="MoreBlogs">
@@ -88,7 +97,7 @@
                       <% else %>
                       <% end %>
 
-                      <% if current_user.present? %>
+                      <% if current_user == @page.user %>
                         <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
                           <div class="btn-group-xs" role="group">
                             <a href="/blogs/<%= blog.id %>/edit" class="btn btn-warning">Edit</a>
