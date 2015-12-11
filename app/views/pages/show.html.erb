@@ -65,15 +65,13 @@
               <% end %>
 
               <% if @page.blogs[1] %>
-                <a href="/pages/blog/<%= @page.id %>" class="btn btn-primary">More</a>
                 <div class="MoreBlogs">
-                  <a class="btn btn-primary btn-blog" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <a class="btn btn-primary btn-blog" role="button" data-toggle="collapse" href="#collapseBlogs" aria-expanded="false" aria-controls="collapseBlogs">
                             Show More
                   </a>
                 </div>
-
-                <div class="collapse" id="collapseExample">
-                  <% @page.blogs.reverse.each do |blog|%>
+                <div class="collapse" id="collapseBlogs">
+                  <% @page.blogs.reverse[1..@page.blogs.length].each do |blog|%>
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <h3 class="panel-title"><%= blog.title %>
@@ -174,11 +172,11 @@
 
           <% if @page.postings.reverse[5] %>
             <div class="MorePostings">
-              <a class="btn btn-primary btn-posting" role="button" data-toggle="collapsePost" href="#collapseExample" aria-expanded="false" aria-controls="collapsePosting">
+              <a class="btn btn-primary btn-posting" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Show More
               </a>
             </div>
-            <div class="collapsePost" id="collapsePosting">
+            <div class="collapse" id="collapseExample">
               <% @page.postings.reverse[5..@page.postings.length].each do |comment|%>
                 <div class="panel panel-default">
                   <% if comment.body? %>

@@ -61,6 +61,6 @@ class BlogsController < ApplicationController
 
     @blog.destroy
 
-    redirect_to "/pages/blog/#{@blog.page_id}", :notice => "Post deleted."
+    redirect_to "/pages/#{@blog.page_id}", :notice => "Post deleted."
   end
 end
