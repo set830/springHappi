@@ -134,15 +134,15 @@
                 </div>
               <% end %>
 
-
-
               <% if @page.postings.reverse[5] %>
                 <a href="/pages/postings/<%= @page.id %>" class="btn btn-primary">More</a>
-                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Link with href
-                  </a>
+                  <dev class="MoreButton">
+                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Show More
+                    </a>
+                  </dev>
+
                   <div class="collapse" id="collapseExample">
-                    <div class="well">
                       <% @page.postings.reverse[5..100].each do |comment|%>
                 <div class="panel panel-default">
                   <% if comment.body? %>
@@ -188,4 +188,10 @@
       disabledDates: <%=raw @disabledDatesArray%>
     })
   });
+
+  $(document).ready(function() {
+      $('.btn-primary').click(function() {
+        $('.MoreButton').hide();
+     });
+   });
 </script>
