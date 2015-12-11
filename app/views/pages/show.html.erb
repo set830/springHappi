@@ -37,13 +37,12 @@
             <div class="col-md-6">
               <div class="panel-body">
                 <h4><font color="#1f5b83"><%= @page.title %></font>
-                <%= @disabledDatesArray %>
                 <% if current_user == @page.user %>
                   <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">Edit</a>
                 <% else %>
                 <% end %>
                 </h4>
-                <h6><%= @page.description %></h6>
+                <h6><%= simple_format(@page.description) %></h6>
 
 
               </div>
@@ -111,30 +110,69 @@
                 </button>
               </form>
               <br />
-              <% @page.postings.reverse.each do |comment|%>
-              <div class="panel panel-default">
-              <% if comment.body? %>
-                <div class="panel-body">
-                  <b><%= comment.name %></b>
-                  <small>
-                        <%=time_ago_in_words(comment.created_at)%> ago
-                  </small> <br />
-                  <%= comment.body %> <br />
+              <% @page.postings.reverse[0..4].each do |comment|%>
+                <div class="panel panel-default">
+                  <% if comment.body? %>
+                    <div class="panel-body">
+                      <b><%= comment.name %></b>
+                      <small>
+                         <%=time_ago_in_words(comment.created_at)%> ago
+                      </small> <br />
+                          <%= comment.body %> <br />
 
-                  <% if current_user == @page.user %>
-                      <div class="btn-group btn-group-xs">
-
+                      <% if current_user == @page.user %>
+                        <div class="btn-group btn-group-xs">
                           <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
                           Delete
                           </a>
-                      </div>
+                        </div>
+                      <% else %>
+                      <% end %>
+                    </div>
                   <% else %>
                   <% end %>
                 </div>
+              <% end %>
+
+
+
+              <% if @page.postings.reverse[5] %>
+                <a href="/pages/postings/<%= @page.id %>" class="btn btn-primary">More</a>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                  </a>
+                  <div class="collapse" id="collapseExample">
+                    <div class="well">
+                      <% @page.postings.reverse[5..100].each do |comment|%>
+                <div class="panel panel-default">
+                  <% if comment.body? %>
+                    <div class="panel-body">
+                      <b><%= comment.name %></b>
+                      <small>
+                         <%=time_ago_in_words(comment.created_at)%> ago
+                      </small> <br />
+                          <%= comment.body %> <br />
+
+                      <% if current_user == @page.user %>
+                        <div class="btn-group btn-group-xs">
+                          <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                          Delete
+                          </a>
+                        </div>
+                      <% else %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                  <% end %>
+                </div>
+              <% end %>
+                    </div>
+                  </div>
+
+
+
               <% else %>
               <% end %>
-              </div>
-                <% end %>
             </div>
         </div>
       </div>
@@ -147,7 +185,7 @@
   $(function () {
     $('#datetimepicker5').datetimepicker({
       format: "dddd, MMMM Do YYYY",
-      disabledDates:[]
+      disabledDates: <%=raw @disabledDatesArray%>
     })
   });
 </script>

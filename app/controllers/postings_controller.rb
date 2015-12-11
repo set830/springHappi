@@ -30,9 +30,9 @@ class PostingsController < ApplicationController
     @posting.page_id = params[:page_id]
 
     if @posting.save
-      redirect_to :back
+      redirect_to :back, :notice => "Claimed #{params[:prayerdate]}."
     else
-      redirect_to :back, :notice => "Please fill in both name and comment."
+      redirect_to :back, :notice => "Please fill in both name and message."
     end
   end
 

@@ -12,6 +12,7 @@
         <th>Title</th>
         <th>Created</th>
         <th>Page</th>
+        <th>Delete</th>
       </tr>
       <% @pages.each do |page| %>
         <% if page.user == current_user %>
@@ -23,6 +24,8 @@
             <td>
                 <a href="/pages/<%= page.id %>" class="btn btn-primary">View</a>
                 <a href="/pages/<%= page.id %>/edit" class="btn btn-warning">Edit</a>
+            </td>
+            <td>
                 <a href="/delete_page/<%= page.id %>" data-confirm="Are you sure? This will delete all the content in the page." class="btn btn-danger" rel="nofollow">Delete</a>
             </td>
           </tr>

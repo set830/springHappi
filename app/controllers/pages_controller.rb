@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:show, :blog]
+  skip_before_action :authenticate_user!, :only => [:show, :blog, :posting]
 
   before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
 
@@ -14,11 +14,23 @@ class PagesController < ApplicationController
     @pages = Page.all
   end
 
+  #def deactivate
+    #set Active Boolean to NO
+    # break get "/pages/:id" route
+
+  #end
+
+  #def activate
+    #set Active Boolean to YES
+    # reconnect get "/pages/:id" route
+  #end
+
   def show
     @page = Page.find(params[:id])
     @posting = Posting.new
     dateArray = Posting.where(page_id: params[:id]).pluck(:prayerdate)
-    @disabledDatesArray = dateArray.map{|x| x.inspect}.map{|x| x.inspect}.join(', ')
+    @disabledDatesArray = dateArray.map{|x| x.strftime("%m/%d/%Y")}
+
   end
 
   def new
@@ -34,6 +46,7 @@ class PagesController < ApplicationController
     @page.thirdimage = params[:thirdimage]
     @page.fourthimage = params[:fourthimage]
     @page.user_id = params[:user_id]
+    #set Active Boolean to YES
 
     if @page.save
       redirect_to "/pages/#{@page.id}", :notice => "Page created successfully."
@@ -73,6 +86,10 @@ class PagesController < ApplicationController
   end
 
   def blog
+    @page = Page.find(params[:id])
+  end
+
+  def posting
     @page = Page.find(params[:id])
   end
 end

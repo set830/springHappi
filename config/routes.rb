@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   root "pages#index"
 
 
-
   # Routes for the Page resource:
   # CREATE
   get "/pages/new", :controller => "pages", :action => "new"
@@ -56,8 +55,17 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_page/:id", :controller => "pages", :action => "destroy"
 
+  # DEACTIVATE
+  #get "/deactivate_page/:id", :controller => "pages", :action => "deactivate"
+
+  # ACTIVATE
+  #get "/activate_page/:id", :controller => "pages", :action => "activate"
+
   # READ BLOG
   get "/pages/blog/:id",:controller => "pages", :action => "blog"
+
+  # READ POSTINGS
+  get "/pages/postings/:id",:controller => "pages", :action => "posting"
 
   #------------------------------
 
