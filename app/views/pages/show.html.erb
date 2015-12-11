@@ -1,182 +1,218 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.firstimage %>" class="img-responsive">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.secondimage %>" class="img-responsive">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.thirdimage %>" class="img-responsive">
-          <br />
-          <br />
-        </div>
-        <div class="col-md-3">
-          <br />
-          <img src="<%= @page.fourthimage %>" class="img-responsive">
-          <br />
-          <br />
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <br />
+      <img src="<%= @page.firstimage %>" class="img-responsive">
+      <br />
+      <br />
     </div>
+    <div class="col-md-3">
+      <br />
+      <img src="<%= @page.secondimage %>" class="img-responsive">
+      <br />
+      <br />
+    </div>
+    <div class="col-md-3">
+      <br />
+      <img src="<%= @page.thirdimage %>" class="img-responsive">
+      <br />
+      <br />
+    </div>
+    <div class="col-md-3">
+      <br />
+      <img src="<%= @page.fourthimage %>" class="img-responsive">
+      <br />
+      <br />
+    </div>
+  </div>
 
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title">
-        </h1>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-            <div class="col-md-6">
-              <div class="panel-body">
-                <h4><font color="#1f5b83"><%= @page.title %></font>
-                <% if current_user == @page.user %>
-                  <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">Edit</a>
-                <% else %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+      </h1>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel-body">
+            <h4><font color="#1f5b83"><%= @page.title %></font>
+              <% if current_user == @page.user %>
+                <a href="/pages/<%= @page.id %>/edit" class="btn btn-warning">Edit</a>
+              <% else %>
+              <% end %>
+            </h4>
+            <h6><%= simple_format(@page.description) %></h6>
+          </div>
+          <div class="panel-body">
+            <% if @page.blogs[0] %>
+              <h6>
+                <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
+                <small>
+                  <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
+                </small>
+              </h6>
+                <%= @page.blogs.reverse.first.body %>
+                <br />
+                <% if @page.blogs.reverse.first.photo? %>
+                  <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
                 <% end %>
-                </h4>
-                <h6><%= simple_format(@page.description) %></h6>
+                <br />
+                <br />
+              <% if current_user == @page.user %>
+                <a href="/blogs/new/<%= @page.id %>" class="btn btn-warning">Add Update</a>
+              <% else %>
+              <% end %>
 
+              <% if @page.blogs[1] %>
+                <a href="/pages/blog/<%= @page.id %>" class="btn btn-primary">More</a>
+                <div class="MoreBlogs">
+                  <a class="btn btn-primary btn-blog" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Show More
+                  </a>
+                </div>
 
-              </div>
-              <div class="panel-body">
-                <% if @page.blogs[0] %>
-                  <h6>
-                    <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
-                  <small>
-                    <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
-                  </small>
-                  </h6>
-                    <%= @page.blogs.reverse.first.body %>
-                  <br />
-                    <% if @page.blogs.reverse.first.photo? %>
-                      <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
-                    <% end %>
-                  <br />
-                  <br />
-                    <a href="/pages/blog/<%= @page.id %>" class="btn btn-primary">More</a>
-                <% else %>
-                <% end %>
+                <div class="collapse" id="collapseExample">
+                  <% @page.blogs.reverse.each do |blog|%>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title"><%= blog.title %>
+                        <small>
+                          <%=time_ago_in_words(blog.created_at)%> ago
+                        </small>
+                      </h3>
+                    </div>
+                    <div class="panel-body">
+                      <%= blog.body %>
+                      <br />
+                      <% if blog.photo? %>
+                        <img src="<%= blog.photo %>" width="200">
+                      <% else %>
+                      <% end %>
 
-                <% if current_user == @page.user %>
-                  <a href="/blogs/new/<%= @page.id %>" class="btn btn-warning">Add Update</a>
-                <% else %>
-                <% end %>
-                  <br />
-                  <br />
+                      <% if current_user.present? %>
+                        <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+                          <div class="btn-group-xs" role="group">
+                            <a href="/blogs/<%= blog.id %>/edit" class="btn btn-warning">Edit</a>
+                            <a href="/delete_blog/<%= blog.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+                          </div>
+                        </div>
+                      <% else %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              <% else %>
+              <% end %>
+            <% else %>
+            <% end %>
+             <br />
+             <br />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <form action="/create_posting" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+            <!-- Label and input for page_id -->
+            <div class="form-group">
+              <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
+            </div>
+
+            <!-- Label and input for name -->
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @posting.name %>">
+            </div>
+
+            <!-- Label and input for prayer date -->
+            <div class="form-group">
+              <div class='input-group date'>
+                <input type='text' name="prayerdate" placeholder="Claim a prayer commitment date" class="form-control" id='datetimepicker5'" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar">
+                  </span>
+                </span>
               </div>
             </div>
-            <div class="col-md-6">
-              <form action="/create_posting" method="post">
-                  <!-- Hidden input for authenticity token to protect from forgery -->
-                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-                <!-- Label and input for page_id -->
-                <div class="form-group">
-                  <input type="hidden" id="page_id" name="page_id" value="<%= @page.id %>">
-                </div>
+            <!-- Label and input for body -->
+            <div class="form-group">
+              <input type="text" textarea id="body" name="body" placeholder="Message" class="form-control" rows="1"><%= @posting.body %></textarea>
+            </div>
 
-                <!-- Label and input for name -->
-                <div class="form-group">
-                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @posting.name %>">
-                </div>
-
-                <!-- Label and input for prayer date -->
-                <div class="form-group">
-                  <div class='input-group date'>
-                    <input type='text' name="prayerdate" placeholder="Claim a prayer commitment date" class="form-control" id='datetimepicker5'" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
-                </div>
-
-
-
-                <!-- Label and input for body -->
-                <div class="form-group">
-                  <input type="text" textarea id="body" name="body" placeholder="Message" class="form-control" rows="1"><%= @posting.body %></textarea>
-                </div>
-
-                <button class="btn btn-success">
+            <button class="btn btn-success">
                     Post
-                </button>
-              </form>
-              <br />
-              <% @page.postings.reverse[0..4].each do |comment|%>
-                <div class="panel panel-default">
-                  <% if comment.body? %>
-                    <div class="panel-body">
-                      <b><%= comment.name %></b>
-                      <small>
-                         <%=time_ago_in_words(comment.created_at)%> ago
-                      </small> <br />
-                          <%= comment.body %> <br />
+            </button>
+          </form>
+          <br />
+          <% @page.postings.reverse[0..4].each do |comment|%>
+            <div class="panel panel-default">
+              <% if comment.body? %>
+                <div class="panel-body">
+                  <b><%= comment.name %></b>
+                    <small>
+                      <%=time_ago_in_words(comment.created_at)%> ago
+                    </small>
+                    <br />
+                  <%= comment.body %> <br />
 
-                      <% if current_user == @page.user %>
-                        <div class="btn-group btn-group-xs">
-                          <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                  <% if current_user == @page.user %>
+                    <div class="btn-group btn-group-xs">
+                      <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
                           Delete
-                          </a>
-                        </div>
-                      <% else %>
-                      <% end %>
+                      </a>
                     </div>
                   <% else %>
                   <% end %>
                 </div>
-              <% end %>
-
-              <% if @page.postings.reverse[5] %>
-                  <dev class="MoreButton">
-                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Show More
-                    </a>
-                  </dev>
-
-                  <div class="collapse" id="collapseExample">
-                      <% @page.postings.reverse[5..@page.postings.length].each do |comment|%>
-                <div class="panel panel-default">
-                  <% if comment.body? %>
-                    <div class="panel-body">
-                      <b><%= comment.name %></b>
-                      <small>
-                         <%=time_ago_in_words(comment.created_at)%> ago
-                      </small> <br />
-                          <%= comment.body %> <br />
-
-                      <% if current_user == @page.user %>
-                        <div class="btn-group btn-group-xs">
-                          <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
-                          Delete
-                          </a>
-                        </div>
-                      <% else %>
-                      <% end %>
-                    </div>
-                  <% else %>
-                  <% end %>
-                </div>
-              <% end %>
-                    </div>
-                  </div>
-
-
-
               <% else %>
               <% end %>
             </div>
+          <% end %>
+
+          <% if @page.postings.reverse[5] %>
+            <div class="MorePostings">
+              <a class="btn btn-primary btn-posting" role="button" data-toggle="collapsePost" href="#collapseExample" aria-expanded="false" aria-controls="collapsePosting">
+                    Show More
+              </a>
+            </div>
+            <div class="collapsePost" id="collapsePosting">
+              <% @page.postings.reverse[5..@page.postings.length].each do |comment|%>
+                <div class="panel panel-default">
+                  <% if comment.body? %>
+                    <div class="panel-body">
+                      <b><%= comment.name %></b>
+                      <small>
+                         <%=time_ago_in_words(comment.created_at)%> ago
+                      </small>
+                      <br />
+                        <%= comment.body %>
+                      <br />
+
+                      <% if current_user == @page.user %>
+                        <div class="btn-group btn-group-xs">
+                          <a href="/delete_posting/<%= comment.id %>" class="btn btn-danger" rel="nofollow">
+                          Delete
+                          </a>
+                        </div>
+                      <% else %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
 </div>
+
 
 
 
@@ -187,10 +223,14 @@
       disabledDates: <%=raw @disabledDatesArray%>
     })
   });
-
   $(document).ready(function() {
-      $('.btn-primary').click(function() {
-        $('.MoreButton').hide();
+      $('.btn-posting').click(function() {
+        $('.MorePostings').hide();
+     });
+   });
+  $(document).ready(function() {
+      $('.btn-blog').click(function() {
+        $('.MoreBlogs').hide();
      });
    });
 </script>
