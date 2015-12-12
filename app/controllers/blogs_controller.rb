@@ -50,9 +50,9 @@ class BlogsController < ApplicationController
     @blog.page_id = params[:page_id]
 
     if @blog.save
-      redirect_to :back
+      redirect_to "/pages/#{@blog.page_id}", :notice => "Post created."
     else
-      render 'edit'
+      render 'edit', :notice => "Not Saved."
     end
   end
 
