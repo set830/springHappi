@@ -18,8 +18,6 @@ gem 'figaro'
 
 gem 'fog'
 
-gem 'aws-sdk', '~> 2'
-
 group :production do
   gem 'pg'
   gem 'rails_12factor'
