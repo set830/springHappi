@@ -16,6 +16,12 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'figaro'
 
+gem "fog-aws"
+
+
+
+
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
