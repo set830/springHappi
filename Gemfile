@@ -16,7 +16,13 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'figaro'
 
+gem 'aws-sdk', '~> 2'
+
+gem 'carrierwave_direct'
+
 gem 'fog'
+
+gem 'sidekiq'
 
 group :production do
   gem 'pg'
