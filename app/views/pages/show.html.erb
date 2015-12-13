@@ -50,15 +50,21 @@
             <% else %>
             <% end %>
             <% if @page.blogs[0] %>
-              <h6>
-                <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
-                <small>
-                  <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
-                </small>
-              </h6>
-              <h6>
-                <%= simple_format(@page.blogs.reverse.first.body) %>
-              </h6>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <h6>
+                    <font color="#1f5b83">Latest:</font> <%=@page.blogs.reverse.first.title%>
+                    <small>
+                      <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
+                    </small>
+                  </h6>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <h6>
+                   <%= simple_format(@page.blogs.reverse.first.body) %>
+                </h6>
                 <br />
                 <% if @page.blogs.reverse.first.photo? %>
                   <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
@@ -73,6 +79,8 @@
                   </div>
                 <% else %>
                 <% end %>
+              </div>
+            </div>
                 <br />
 
               <% if @page.blogs[1] %>
