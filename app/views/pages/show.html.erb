@@ -56,9 +56,7 @@
                   <%=time_ago_in_words(@page.blogs.reverse.first.created_at)%> ago
                 </small>
               </h6>
-              <h6>
                 <%= simple_format(@page.blogs.reverse.first.body) %>
-              </h6>
                 <br />
                 <% if @page.blogs.reverse.first.photo? %>
                   <img src="<%= @page.blogs.reverse.first.photo %>" class="img-responsive" width="150">
