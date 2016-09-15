@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.0', :engine => 'jruby', :engine_version => '2.1.0'
+
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git"
 
 gem 'activeadmin', '~> 1.0.0.pre1'
