@@ -4,7 +4,7 @@ gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 
-gem 'devise', '= 3.5.6'
+gem 'devise', '3.5.6'
 
 gem 'carrierwave'
 
